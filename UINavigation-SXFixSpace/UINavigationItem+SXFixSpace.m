@@ -123,7 +123,8 @@
     if (sx_deviceVersion >= 11) {
         [self sx_setRightBarButtonItem:rightBarButtonItem];
     } else {
-        if (![UINavigationConfig shared].sx_disableFixSpace && rightBarButtonItem) {//存在按钮且需要调节
+        BOOL enbleRigthItem = [UINavigationConfig shared].sx_enableRightItem;
+        if (enbleRigthItem && ![UINavigationConfig shared].sx_disableFixSpace && rightBarButtonItem) {//存在按钮且需要调节
             [self setRightBarButtonItems:@[rightBarButtonItem]];
         } else {//不存在按钮,或者不需要调节
             [self sx_setRightBarButtonItem:rightBarButtonItem];
@@ -158,7 +159,8 @@
     if (sx_deviceVersion >= 11) {
         [self sx_setRightBarButtonItem:rightBarButtonItem animated:animated];
     } else {
-        if (![UINavigationConfig shared].sx_disableFixSpace && rightBarButtonItem) {//存在按钮且需要调节
+        BOOL enbleRigthItem = [UINavigationConfig shared].sx_enableRightItem;
+        if (enbleRigthItem && ![UINavigationConfig shared].sx_disableFixSpace && rightBarButtonItem) {//存在按钮且需要调节
             [self setRightBarButtonItems:@[rightBarButtonItem] animated:animated];
         } else {//不存在按钮,或者不需要调节
             [self sx_setRightBarButtonItem:rightBarButtonItem animated:animated];

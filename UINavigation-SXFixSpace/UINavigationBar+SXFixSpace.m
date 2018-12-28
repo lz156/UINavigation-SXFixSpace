@@ -28,10 +28,17 @@
     [self sx_layoutSubviews];
     if (sx_deviceVersion >= 11 && ![UINavigationConfig shared].sx_disableFixSpace) {//需要调节
 //        self.layoutMargins = UIEdgeInsetsZero;
-        CGFloat space = [UINavigationConfig shared].sx_defaultFixSpace;
+        CGFloat space        = [UINavigationConfig shared].sx_defaultFixSpace;
+        BOOL enableRightItem = [UINavigationConfig shared].sx_enableRightItem;
         for (UIView *subview in self.subviews) {
             if ([NSStringFromClass(subview.class) containsString:@"ContentView"]) {
-                subview.layoutMargins = UIEdgeInsetsMake(0, space, 0, space);//可修正iOS11之后的偏移
+                if (enableRightItem) {
+                    subview.layoutMargins = UIEdgeInsetsMake(0, space, 0, space);//可修正iOS11之后的偏移
+                }
+                else{
+                    subview.layoutMargins = UIEdgeInsetsMake(0, space, 0, subview.layoutMargins.right);//可修
+                }
+                
                 break;
             }
         }
